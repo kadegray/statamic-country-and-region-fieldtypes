@@ -1,0 +1,29 @@
+{
+    "name": "kadegray/statamic-country-and-region-fieldtype",
+    "description": "Statamic Country And Region Fieldtype addon",
+    "authors": [
+        {
+            "name": "Kade Gray"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kadegray\\StatamicCountryAndRegionFieldtype\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Country And Region Fieldtype",
+            "description": "Statamic Country And Region Fieldtype addon"
+        },
+        "laravel": {
+            "providers": [
+                "Kadegray\\StatamicCountryAndRegionFieldtype\\ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "sokil/php-isocodes-db-i18n": "^4.0",
+        "sokil/php-isocodes": "^4.1"
+    }
+}
