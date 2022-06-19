@@ -82,7 +82,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       return new Promise(function (resolve) {
-        fetch('/!/statamic-country-and-region-fieldtype/countries').then(function (response) {
+        fetch('/!/statamic-country-and-region-fieldtypes/countries').then(function (response) {
           return response.json();
         }).then(function (countries) {
           _this2.countries = countries;
@@ -175,8 +175,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this.externalUpdate(_this.regionCode);
       } else {
         // external country input has been unset
-        _this.country = null;
-
         _this.externalUpdate(null);
       }
     });
@@ -234,7 +232,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", []);
 
               case 3:
-                path = "statamic-country-and-region-fieldtype/".concat(_this2.country, "/regions");
+                path = "statamic-country-and-region-fieldtypes/".concat(_this2.country, "/regions");
                 data = localStorage.getItem(path);
 
                 if (!data) {

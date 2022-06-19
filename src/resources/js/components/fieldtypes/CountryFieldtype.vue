@@ -78,7 +78,7 @@ export default {
 
             return new Promise((resolve) => {
 
-                fetch('/!/statamic-country-and-region-fieldtype/countries')
+                fetch('/!/statamic-country-and-region-fieldtypes/countries')
                     .then(response => response.json())
                     .then((countries) => {
                         this.countries = countries;

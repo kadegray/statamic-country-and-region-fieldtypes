@@ -1,9 +1,9 @@
 <?php
 
-namespace Kadegray\StatamicCountryAndRegionFieldtype\Fieldtypes;
+namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
 use Statamic\Fields\Fieldtype;
-use Kadegray\StatamicCountryAndRegionFieldtype\FieldtypeFilters\RegionFieldtypeFilter;
+use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\RegionFieldtypeFilter;
 use Sokil\IsoCodes\IsoCodesFactory;
 use Statamic\Facades\Site;
 use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;

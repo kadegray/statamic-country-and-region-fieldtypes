@@ -1,5 +1,5 @@
 {
-    "name": "kadegray/statamic-country-and-region-fieldtype",
+    "name": "kadegray/statamic-country-and-region-fieldtypes",
     "description": "Statamic Country And Region Fieldtype addon",
     "authors": [
         {
@@ -8,17 +8,17 @@
     ],
     "autoload": {
         "psr-4": {
-            "Kadegray\\StatamicCountryAndRegionFieldtype\\": "src"
+            "Kadegray\\StatamicCountryAndRegionFieldtypes\\": "src"
         }
     },
     "extra": {
         "statamic": {
-            "name": "Statamic Country And Region Fieldtype",
-            "description": "Statamic Country And Region Fieldtype addon"
+            "name": "Statamic Country And Region Fieldtypes",
+            "description": "Statamic Country And Region Fieldtypes addon"
         },
         "laravel": {
             "providers": [
-                "Kadegray\\StatamicCountryAndRegionFieldtype\\ServiceProvider"
+                "Kadegray\\StatamicCountryAndRegionFieldtypes\\ServiceProvider"
             ]
         }
     },

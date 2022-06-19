@@ -1,10 +1,10 @@
 <?php
 
-namespace Kadegray\StatamicCountryAndRegionFieldtype\Fieldtypes;
+namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
 use Statamic\Fields\Fieldtype;
 use Statamic\Query\Scopes\Filters\Fields\FieldtypeFilter;
-use Kadegray\StatamicCountryAndRegionFieldtype\FieldtypeFilters\CountryFieldtypeFilter;
+use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\CountryFieldtypeFilter;
 use Sokil\IsoCodes\IsoCodesFactory;
 use Illuminate\Support\Facades\App;
 use Statamic\Facades\Site;

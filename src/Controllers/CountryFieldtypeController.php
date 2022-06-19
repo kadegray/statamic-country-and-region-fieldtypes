@@ -1,6 +1,6 @@
 <?php
 
-namespace Kadegray\StatamicCountryAndRegionFieldtype\Controllers;
+namespace Kadegray\StatamicCountryAndRegionFieldtypes\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Sokil\IsoCodes\IsoCodesFactory;

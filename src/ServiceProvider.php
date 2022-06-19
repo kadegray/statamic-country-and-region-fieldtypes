@@ -1,11 +1,11 @@
 <?php
 
-namespace Kadegray\StatamicCountryAndRegionFieldtype;
+namespace Kadegray\StatamicCountryAndRegionFieldtypes;
 
 use Statamic\Providers\AddonServiceProvider;
-use Kadegray\StatamicCountryAndRegionFieldtype\Fieldtypes\CountryFieldtype;
-use Kadegray\StatamicCountryAndRegionFieldtype\Fieldtypes\RegionFieldtype;
-use Kadegray\StatamicCountryAndRegionFieldtype\Fieldtypes\RegionInCountryFieldtype;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes\CountryFieldtype;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes\RegionFieldtype;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes\RegionInCountryFieldtype;
 
 class ServiceProvider extends AddonServiceProvider
 {

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Kadegray\StatamicCountryAndRegionFieldtype\Controllers\CountryFieldtypeController;
-use Kadegray\StatamicCountryAndRegionFieldtype\Controllers\RegionFieldtypeController;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Controllers\CountryFieldtypeController;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Controllers\RegionFieldtypeController;
 
 /*
 |--------------------------------------------------------------------------

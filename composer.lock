@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be46f15e63c9f87ee373d349ca8acd33",
+    "content-hash": "4fa8296615bf52f34664e3ddef143196",
     "packages": [
         {
             "name": "sokil/php-isocodes",

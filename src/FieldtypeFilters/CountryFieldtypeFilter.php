@@ -1,6 +1,6 @@
 <?php
 
-namespace Kadegray\StatamicCountryAndRegionFieldtype\FieldtypeFilters;
+namespace Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters;
 
 use Statamic\Extend\HasFields;
 use Statamic\Support\Arr;

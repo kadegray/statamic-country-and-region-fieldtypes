@@ -111,7 +111,7 @@ export default {
                 return [];
             }
 
-            const path = `statamic-country-and-region-fieldtype/${this.country}/regions`;
+            const path = `statamic-country-and-region-fieldtypes/${this.country}/regions`;
             const data = localStorage.getItem(path);
             if (data) {
                 const regions = JSON.parse(data);
