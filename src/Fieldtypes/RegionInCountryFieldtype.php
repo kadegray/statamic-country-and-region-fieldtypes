@@ -50,7 +50,35 @@ class RegionInCountryFieldtype extends Fieldtype
 
     protected function configFieldItems(): array
     {
-        return [];
+        return [
+            'region_placeholder' => [
+                'display' => __('Region Placeholder'),
+                'instructions' => __('statamic::fieldtypes.select.config.placeholder'),
+                'type' => 'text',
+                'default' => '',
+                'width' => 50,
+            ],
+            'country_placeholder' => [
+                'display' => __('Country Placeholder'),
+                'instructions' => __('statamic::fieldtypes.select.config.placeholder'),
+                'type' => 'text',
+                'default' => '',
+                'width' => 50,
+            ],
+            'clearable' => [
+                'display' => __('Clearable'),
+                'instructions' => __('statamic::fieldtypes.select.config.clearable'),
+                'type' => 'toggle',
+                'default' => true,
+                'width' => 50,
+            ],
+            'default' => [
+                'display' => __('Default Country'),
+                'instructions' => __('statamic::messages.fields_default_instructions'),
+                'type' => 'country',
+                'width' => 50,
+            ],
+        ];
     }
 
     public function augment($region)

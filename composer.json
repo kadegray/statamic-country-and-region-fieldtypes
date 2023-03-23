@@ -23,7 +23,15 @@
         }
     },
     "require": {
-        "sokil/php-isocodes-db-i18n": "^4.0",
-        "sokil/php-isocodes": "^4.1"
+        "sokil/php-isocodes": "^4.1",
+        "sokil/php-isocodes-db-i18n": "^4.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
+    },
+    "require-dev": {
+        "statamic/cms": "^3.3"
     }
 }

@@ -1,10 +1,23 @@
 {
+  "scripts": {
+    "watch": "mix watch && php /Users/kadegray/Sites/ibexel/statamic-country-and-region-fieldtypes/artisan vendor:publish --tag=statamic-country-and-region-fieldtypes --force",
+    "build": "mix"
+  },
   "devDependencies": {
+    "@shopify/draggable": "^1.0.0-beta.8",
+    "autoprefixer": "^10.4.12",
     "laravel-mix": "^6.0.48",
-    "lodash.filter": "^4.6.0",
     "lodash.first": "^3.0.0",
+    "lodash.get": "^4.4.2",
+    "lodash.split": "^4.4.2",
+    "postcss": "^8.4.18",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "tailwindcss": "^3.1.8",
+    "uniqid": "^5.4.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.8",
+    "vue-select": "^3.20.2",
     "vue-template-compiler": "^2.6.14"
   }
 }

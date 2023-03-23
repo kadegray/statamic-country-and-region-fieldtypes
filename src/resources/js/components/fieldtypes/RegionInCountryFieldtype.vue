@@ -1,10 +1,17 @@
 <template>
     <div>
+
         <country-fieldtype v-model="country" handle="country" ref="country"
-            placeholder="Country" />
-        <region-fieldtype v-model="region" handle="region" ref="region"
-            :placeholder="config.display"
+            :placeholder="config.country_placeholder"
+            :clearable="config.clearable"
+            @loaded="countryFieldTypeLoaded" />
+
+        <region-fieldtype v-model="regions" handle="regions" ref="regions"
+            :placeholder="config.region_placeholder"
+            :clearable="config.clearable"
+            @loaded="regionFieldTypeLoaded"
             class="mt-1" />
+
     </div>
 </template>
 
@@ -17,42 +24,79 @@ export default {
     mixins: [Fieldtype],
 
     mounted() {
-        this.initializeFromValue();
+        this.updateValue();
     },
 
     data() {
-
         return {
             country: null,
-            region: null,
+            regions: null,
         };
     },
 
     watch: {
-        country(country) {
-            this.$refs.region.getRegions(this.country);
+        async country(country, oldCountry) {
+            if (!country) {
+                this.update(null);
+            }
+
+            const regions = await this.$refs.regions.getRegions(this.country);
+            // if (regions.length > 0) {
+                this.update(country);
+            // }
+            
+            if (country !== oldCountry) {
+                this.$refs.regions.update(null);
+            }
         },
-        region(region) {
-            if (region) {
-                this.update(this.region);
+        regions(regions) {
+            if (regions) {
+                this.update(this.regions);
             }
         },
         value() {
-            this.initializeFromValue();
+            this.updateValue();
         },
     },
 
     methods: {
-        initializeFromValue() {
-            const countryCode = _first(_split(this.value, '-'));
 
-            this.$refs.country.getCountriesAndSetCountry(countryCode)
-                .then(() => {
-                    this.$refs.region.getRegions(this.country).then(() => {
-                        this.$refs.region.update(this.value);
-                    });
-                });
+        countryFieldTypeLoaded() {
+            this.updateValue();
         },
+
+        regionFieldTypeLoaded() {
+            this.updateValue();
+        },
+
+        async updateValue() {
+
+            console.log('updateValue');
+
+            let regionCode = this.value;
+            console.log('regionCode 1', regionCode);
+            if (!regionCode) {
+                return;
+            }
+
+            let countryCode = regionCode.includes('-')
+                ? _first(_split(regionCode, '-'))
+                : regionCode;
+            console.log('countryCode 1', countryCode);
+
+            await this.$refs.country.setSelected(countryCode);
+
+            const regions = await this.$refs.regions.getRegions(countryCode);
+            console.log('regions', regions.length, regions);
+            if (regions.length > 0) {
+                console.log('A');
+                this.$refs.regions.update(this.value);
+            } else {
+                console.log('B');
+                this.$refs.regions.update(null);
+            }
+        },
+
     }
 
 };

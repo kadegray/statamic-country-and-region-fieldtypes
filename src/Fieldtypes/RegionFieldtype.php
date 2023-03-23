@@ -5,7 +5,6 @@ namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 use Statamic\Fields\Fieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\RegionFieldtypeFilter;
 use Sokil\IsoCodes\IsoCodesFactory;
-use Illuminate\Support\Facades\App;
 use Statamic\Facades\Site;
 use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
 
@@ -52,39 +51,64 @@ class RegionFieldtype extends Fieldtype
     protected function configFieldItems(): array
     {
         return [
-            'language' => [
-                'type' => 'hidden',
-                'default' => App::getLocale(),
+            'placeholder' => [
+                'display' => __('Placeholder'),
+                'instructions' => __('statamic::fieldtypes.select.config.placeholder'),
+                'type' => 'text',
+                'default' => 'Select region...',
+                'width' => 50,
             ],
             'country' => [
                 'display' => 'Country',
                 'instructions' => 'Select how you would like to filter Regions by Country.',
                 'type' => 'select',
-                'default' => 'country_field',
+                'default' => 'countries_field',
                 'options' => [
-                    'country_field' =>  'Field',
-                    'country_manual' => 'Manual',
+                    'countries_field' =>  'Field',
+                    'countries_manual' => 'Manual',
                 ],
                 'width' => 50,
             ],
-            'country_manual' => [
-                'display' => 'Manually defined Country',
-                'instructions' => 'Select a specific Country.',
+            'countries_manual' => [
+                'display' => 'Manually defined Countries',
+                'instructions' => 'Select specific Countries.',
                 'type' => 'country',
+                'multiple' => true,
                 'width' => 50,
                 'if' => [
-                    'country' => 'country_manual',
+                    'country' => 'countries_manual',
                 ]
             ],
-            'country_field' => [
+            'countries_field' => [
                 'display' => 'Country field handle',
-                'instructions' => 'This should be the handle of the Country FieldType that you would like to use.',
+                'instructions' => 'This should be the handle of the Country Fieldtype that you would like to use.',
                 'type' => 'text',
                 'default' => 'country',
                 'width' => 50,
                 'if' => [
-                    'country' => 'country_field',
+                    'country' => 'countries_field',
                 ]
+            ],
+            'max_items' => [
+                'display' => __('Max Items'),
+                'instructions' => __('statamic::messages.max_items_instructions'),
+                'min' => 1,
+                'type' => 'integer',
+                'width' => 50,
+            ],
+            'multiple' => [
+                'display' => __('Multiple'),
+                'instructions' => __('statamic::fieldtypes.select.config.multiple'),
+                'type' => 'toggle',
+                'default' => false,
+                'width' => 50,
+            ],
+            'clearable' => [
+                'display' => __('Clearable'),
+                'instructions' => __('statamic::fieldtypes.select.config.clearable'),
+                'type' => 'toggle',
+                'default' => true,
+                'width' => 50,
             ],
         ];
     }
@@ -96,6 +120,10 @@ class RegionFieldtype extends Fieldtype
         $driver = new SymfonyTranslationDriver();
         $driver->setLocale($currentLocale);
         $isoCodes = new IsoCodesFactory(null, $driver);
+
+        if (!$value) {
+            return;
+        }
 
         $regionName = $isoCodes->getSubdivisions()
             ->getByCode($value)
