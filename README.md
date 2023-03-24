@@ -1,16 +1,14 @@
 # Statamic Country And Region Fieldtypes
 
-> Statamic Country And Region Fieldtypes is a Statamic addon that is everything you need to store and display country and region on your Statamic site.
+> Statamic Country And Region Fieldtypes is an addon that is everything you need to store and display Country and Region on your site.
 
 ## Features
 
 - Supports all Countries standardized in `ISO 3166-1`.
 - Supports all Regions standardized in `ISO 3166-2` (Principle subdivisions; for example: State, Province).
-
 - Multiselect Countries and Regions.
 - Set a default Country or Region.
 - On the Region fieldtype configure one or multiple Countries whose Regions to display as options.
-
 - Locale for these Fieldtypes work in Control Panel.
 - When using multisite these fieldtypes will display the country or region in the locale of the (multi) site.
 
