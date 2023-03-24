@@ -14,7 +14,7 @@
     "extra": {
         "statamic": {
             "name": "Statamic Country And Region Fieldtypes",
-            "description": "Statamic Country And Region Fieldtypes addon"
+            "description": "Statamic Country And Region Fieldtypes is an addon that is everything you need to store and display Country and Region on your site."
         },
         "laravel": {
             "providers": [
