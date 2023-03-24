@@ -12,111 +12,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var lodash_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/filter */ "./node_modules/lodash/filter.js");
-/* harmony import */ var lodash_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_filter__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/first */ "./node_modules/lodash/first.js");
-/* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_first__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/get */ "./node_modules/lodash/get.js");
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_2__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mixins: [Fieldtype],
-  props: {
-    placeholder: {
-      type: String,
-      "default": ""
-    }
-  },
-  data: function data() {
-    return {
-      countries: [],
-      country: null
-    };
-  },
-  watch: {
-    value: function value(country, oldCountry) {
-      if (country === oldCountry) {
-        return;
-      }
-
-      this.getCountriesAndSetCountry(country);
-    }
-  },
-  mounted: function mounted() {
-    this.getCountriesAndSetCountry(this.value);
-  },
-  methods: {
-    getCountriesAndSetCountry: function getCountriesAndSetCountry(country) {
-      var _this = this;
-
-      return new Promise(function (resolve) {
-        if (country) {
-          _this.update(country);
-        }
-
-        _this.getCountries().then(function () {
-          if (!_this.value) {
-            return;
-          }
-
-          _this.country = lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(_this.countries, function (country) {
-            return country.value == _this.value;
-          }));
-          resolve();
-        });
-      });
-    },
-    getCountries: function getCountries() {
-      var _this2 = this;
-
-      return new Promise(function (resolve) {
-        fetch('/!/statamic-country-and-region-fieldtypes/countries').then(function (response) {
-          return response.json();
-        }).then(function (countries) {
-          _this2.countries = countries;
-          resolve();
-        });
-      });
-    },
-    changed: function changed() {
-      this.update(lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(this, 'country.value'));
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/resources/js/components/fieldtypes/RegionFieldtype.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/resources/js/components/fieldtypes/RegionFieldtype.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var lodash_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/filter */ "./node_modules/lodash/filter.js");
-/* harmony import */ var lodash_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_filter__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/first */ "./node_modules/lodash/first.js");
-/* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_first__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/get */ "./node_modules/lodash/get.js");
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var lodash_isNil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/isNil */ "./node_modules/lodash/isNil.js");
-/* harmony import */ var lodash_isNil__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isNil__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _vendor_statamic_cms_resources_js_components_fieldtypes_HasInputOptions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../../../vendor/statamic/cms/resources/js/components/fieldtypes/HasInputOptions.js */ "./vendor/statamic/cms/resources/js/components/fieldtypes/HasInputOptions.js");
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/get */ "./node_modules/lodash/get.js");
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/filter */ "./node_modules/lodash/filter.js");
+/* harmony import */ var lodash_filter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_filter__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -136,150 +36,180 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mixins: [Fieldtype],
+  mixins: [Fieldtype, _vendor_statamic_cms_resources_js_components_fieldtypes_HasInputOptions_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
     placeholder: {
       type: String,
       "default": ""
+    },
+    clearable: {
+      type: Boolean,
+      "default": false
     }
   },
   data: function data() {
     return {
-      regions: [],
-      region: null,
-      regionCode: null,
-      manualCountry: null
+      countries: [],
+      selected: null
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
-    if ('country_field' !== lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(this, 'config.country')) {
-      return;
-    }
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.getCountries();
 
-    var countryField = lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(this, 'config.country_field');
+            case 2:
+              _this.updateSelected();
 
-    if (!countryField) {
-      return;
-    }
+              _this.$emit('loaded');
 
-    this.$watch("$store.state.publish.base.values.".concat(countryField), function (countryCode) {
-      if (countryCode) {
-        // external country has been set, so update regions and set region
-        _this.externalUpdate(_this.regionCode);
-      } else {
-        // external country input has been unset
-        _this.externalUpdate(null);
-      }
-    });
-  },
-  computed: {
-    country: function country() {
-      if (this.manualCountry) {
-        return this.manualCountry;
-      }
-
-      if ('country_manual' === this.config.country) {
-        return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(this.config, 'country_manual');
-      }
-
-      if ('country_field' === this.config.country) {
-        return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(this, "$store.state.publish.base.values.".concat(this.config.country_field));
-      }
-
-      return null;
-    }
-  },
-  mounted: function mounted() {
-    this.externalUpdate(this.value);
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   watch: {
-    region: function region(_region) {
-      this.internalUpdate(_region);
+    value: function value(newValue, oldValue) {
+      this.updateSelected();
+    }
+  },
+  computed: {
+    options: function options() {
+      return this.normalizeInputOptions(this.config.options);
     },
-    value: function value(_value) {
-      if (_value != this.regionCode) {
-        this.externalUpdate(_value);
+    replicatorPreview: function replicatorPreview() {
+      switch (_typeof(this.selected)) {
+        case 'array':
+          return this.selected.map(function (option) {
+            return lodash_get__WEBPACK_IMPORTED_MODULE_1___default()(option, 'label');
+          }).join(', ');
+
+        case 'string':
+          return this.selected.label;
       }
+    },
+    resetOnOptionsChange: function resetOnOptionsChange() {
+      // Reset logic should only happen when the config value is true.
+      // Nothing should be reset when it's false or undefined.
+      if (this.config.reset_on_options_change !== true) return false; // Reset the value if the value doesn't exist in the new set of options.
+
+      return function (options, old, val) {
+        var opts = options.map(function (o) {
+          return o.value;
+        });
+        return !val.some(function (v) {
+          return opts.includes(v.value);
+        });
+      };
+    },
+    limitReached: function limitReached() {
+      if (!this.config.max_items) return false;
+      return this.currentLength >= this.config.max_items;
+    },
+    limitExceeded: function limitExceeded() {
+      if (!this.config.max_items) return false;
+      return this.currentLength > this.config.max_items;
+    },
+    currentLength: function currentLength() {
+      if (this.value) {
+        return typeof this.value == 'string' ? 1 : this.value.length;
+      }
+
+      return 0;
+    },
+    limitIndicatorColor: function limitIndicatorColor() {
+      if (this.limitExceeded) {
+        return 'text-red';
+      } else if (this.limitReached) {
+        return 'text-green';
+      }
+
+      return 'text-grey';
     }
   },
   methods: {
-    getRegions: function getRegions(manualCountry) {
+    getCountries: function getCountries() {
       var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var path, data, _regions, regions;
-
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (manualCountry) {
-                  _this2.manualCountry = manualCountry;
-                }
-
-                if (_this2.country) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return", []);
-
-              case 3:
-                path = "statamic-country-and-region-fieldtypes/".concat(_this2.country, "/regions");
-                data = localStorage.getItem(path);
-
-                if (!data) {
-                  _context.next = 9;
-                  break;
-                }
-
-                _regions = JSON.parse(data);
-                _this2.regions = _regions;
-                return _context.abrupt("return");
-
-              case 9:
-                _context.next = 11;
-                return fetch("/!/".concat(path));
-
-              case 11:
-                regions = _context.sent;
-                _context.next = 14;
-                return regions.json();
-
-              case 14:
-                regions = _context.sent;
-                localStorage.setItem(path, JSON.stringify(regions));
-                _this2.regions = regions;
-                return _context.abrupt("return");
-
-              case 18:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    internalUpdate: function internalUpdate(region) {
-      var _this3 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var response;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this3.regionCode = lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(region, 'value');
+                if (!(!_this2.countries || _this2.countries.length === 0)) {
+                  _context2.next = 7;
+                  break;
+                }
 
-                _this3.update(_this3.regionCode);
+                _context2.next = 3;
+                return fetch('/!/statamic-country-and-region-fieldtypes/countries');
 
-              case 2:
+              case 3:
+                response = _context2.sent;
+                _context2.next = 6;
+                return response.json();
+
+              case 6:
+                _this2.countries = _context2.sent;
+
+              case 7:
+                return _context2.abrupt("return", _this2.countries);
+
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -287,34 +217,436 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    externalUpdate: function externalUpdate(regionCode) {
+    setSelected: function setSelected(countries) {
+      this.selected = _.find(this.countries, function (country) {
+        return countries.includes(country.value);
+      });
+    },
+    updateSelected: function updateSelected() {
+      var _this3 = this;
+
+      var selected;
+
+      switch (_typeof(this.value)) {
+        case 'string':
+        case 'number':
+          selected = _.findWhere(this.countries, {
+            value: this.value
+          });
+          break;
+
+        case 'array':
+        case 'object':
+          if (!this.value) {
+            selected = null;
+            break;
+          }
+
+          selected = this.value.map(function (value) {
+            var test = _.findWhere(_this3.countries, {
+              value: value
+            });
+
+            return test;
+          }).filter(function (value) {
+            return value !== undefined;
+          });
+          break;
+      }
+
+      this.selected = selected;
+    },
+    updateValue: function updateValue(value) {
+      if (this.config.multiple) {
+        this.update(value.map(function (v) {
+          return v.value;
+        }));
+      } else {
+        if (value) {
+          this.update(value.value);
+        } else {
+          this.update(null);
+        }
+      }
+    },
+    focus: function focus() {
+      this.$refs.input.focus();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/resources/js/components/fieldtypes/RegionFieldtype.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/resources/js/components/fieldtypes/RegionFieldtype.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _vendor_statamic_cms_resources_js_components_fieldtypes_HasInputOptions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../../../vendor/statamic/cms/resources/js/components/fieldtypes/HasInputOptions.js */ "./vendor/statamic/cms/resources/js/components/fieldtypes/HasInputOptions.js");
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/get */ "./node_modules/lodash/get.js");
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [Fieldtype, _vendor_statamic_cms_resources_js_components_fieldtypes_HasInputOptions_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  props: {
+    placeholder: {
+      type: String,
+      "default": ""
+    },
+    clearable: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  data: function data() {
+    return {
+      regions: [],
+      region: null,
+      selected: null,
+      countries_override: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.getRegions();
+
+            case 2:
+              _this.updateSelected();
+
+              _this.$emit('loaded');
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  created: function created() {
+    var _this$config,
+        _this$config2,
+        _this2 = this;
+
+    if ('countries_field' !== (this === null || this === void 0 ? void 0 : (_this$config = this.config) === null || _this$config === void 0 ? void 0 : _this$config.country)) {
+      return;
+    }
+
+    var countryField = this === null || this === void 0 ? void 0 : (_this$config2 = this.config) === null || _this$config2 === void 0 ? void 0 : _this$config2.countries_field;
+
+    if (countryField) {
+      this.$watch("$store.state.publish.base.values.".concat(countryField), function (countryCodes) {
+        if (countryCodes && _this2.selected) {
+          // external country has been set, so update regions and set region
+          _this2.externalUpdate(_this2.selected, countryCodes);
+        } else {
+          // external country input has been unset
+          _this2.externalUpdate(null);
+        }
+      });
+    }
+  },
+  computed: {
+    countries: function countries() {
+      if (this.countries_override) {
+        return this.countries_override;
+      }
+
+      if ('countries_manual' === this.config.country) {
+        var countries = lodash_get__WEBPACK_IMPORTED_MODULE_1___default()(this.config, 'countries_manual');
+
+        return countries;
+      }
+
+      if ('countries_field' === this.config.country) {
+        var _countries = lodash_get__WEBPACK_IMPORTED_MODULE_1___default()(this, "$store.state.publish.base.values.".concat(this.config.countries_field));
+
+        return _countries;
+      }
+
+      return null;
+    },
+    options: function options() {
+      return this.normalizeInputOptions(this.config.options);
+    },
+    replicatorPreview: function replicatorPreview() {
+      switch (_typeof(this.selected)) {
+        case 'array':
+          return this.selected.map(function (option) {
+            return lodash_get__WEBPACK_IMPORTED_MODULE_1___default()(option, 'label');
+          }).join(', ');
+
+        case 'string':
+          return this.selected.label;
+      }
+    },
+    resetOnOptionsChange: function resetOnOptionsChange() {
+      // Reset logic should only happen when the config value is true.
+      // Nothing should be reset when it's false or undefined.
+      if (this.config.reset_on_options_change !== true) return false; // Reset the value if the value doesn't exist in the new set of options.
+
+      return function (options, old, val) {
+        var opts = options.map(function (o) {
+          return o.value;
+        });
+        return !val.some(function (v) {
+          return opts.includes(v.value);
+        });
+      };
+    },
+    limitReached: function limitReached() {
+      if (!this.config.max_items) return false;
+      return this.currentLength >= this.config.max_items;
+    },
+    limitExceeded: function limitExceeded() {
+      if (!this.config.max_items) return false;
+      return this.currentLength > this.config.max_items;
+    },
+    currentLength: function currentLength() {
+      if (this.value) {
+        return typeof this.value == 'string' ? 1 : this.value.length;
+      }
+
+      return 0;
+    },
+    limitIndicatorColor: function limitIndicatorColor() {
+      if (this.limitExceeded) {
+        return 'text-red';
+      } else if (this.limitReached) {
+        return 'text-green';
+      }
+
+      return 'text-grey';
+    }
+  },
+  watch: {
+    value: function value(newValue, oldValue) {
+      if (newValue != this.selected) {
+        this.externalUpdate(newValue);
+      }
+
+      this.updateSelected();
+    }
+  },
+  methods: {
+    externalUpdate: function externalUpdate(selected) {
+      var _arguments = arguments,
+          _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var countryCodes;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                countryCodes = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : null;
+
+                if (!countryCodes) {
+                  _this3.selected = selected;
+                } else {
+                  _this3.selected = selected.filter(function (option) {
+                    var _option$split, _option$value$split;
+
+                    var optionCountryCode;
+
+                    switch (_typeof(option)) {
+                      case 'string':
+                        optionCountryCode = (_option$split = option.split('-')) === null || _option$split === void 0 ? void 0 : _option$split[0];
+                        break;
+
+                      case 'object':
+                        optionCountryCode = (_option$value$split = option.value.split('-')) === null || _option$value$split === void 0 ? void 0 : _option$value$split[0];
+                        break;
+                    }
+
+                    return countryCodes.includes(optionCountryCode);
+                  });
+                }
+
+                _context2.next = 4;
+                return _this3.getRegions();
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    updateSelected: function updateSelected() {
       var _this4 = this;
 
+      var selected;
+
+      switch (_typeof(this.value)) {
+        case 'string':
+        case 'number':
+          selected = _.findWhere(this.regions, {
+            value: this.value
+          });
+          break;
+
+        case 'array':
+        case 'object':
+          if (!this.value) {
+            selected = null;
+            break;
+          }
+
+          selected = this.value.map(function (value) {
+            return _.findWhere(_this4.regions, {
+              value: value
+            });
+          }).filter(function (value) {
+            return value !== undefined;
+          });
+          break;
+      }
+
+      this.selected = selected;
+    },
+    getRegions: function getRegions() {
+      var _arguments2 = arguments,
+          _this5 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var _this5$countries;
+
+        var countriesOverride, regions;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this4.regionCode = regionCode;
-                _context3.next = 3;
-                return _this4.getRegions();
+                countriesOverride = _arguments2.length > 0 && _arguments2[0] !== undefined ? _arguments2[0] : null;
 
-              case 3:
-                _context3.next = 5;
-                return lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_filter__WEBPACK_IMPORTED_MODULE_0___default()(_this4.regions, function (region) {
-                  return region.value == regionCode;
-                }));
+                if (!countriesOverride) {
+                  _context3.next = 6;
+                  break;
+                }
 
-              case 5:
-                _this4.region = _context3.sent;
+                _this5.countries_override = countriesOverride;
+                _this5.regions = []; // this.clear();
+
+                _context3.next = 9;
+                break;
 
               case 6:
+                if (!(!_this5.countries || ((_this5$countries = _this5.countries) === null || _this5$countries === void 0 ? void 0 : _this5$countries.length) === 0)) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                _this5.regions = [];
+                return _context3.abrupt("return", _this5.regions);
+
+              case 9:
+                _context3.next = 11;
+                return fetch("/!/statamic-country-and-region-fieldtypes/".concat(_this5.countries, "/regions"));
+
+              case 11:
+                regions = _context3.sent;
+                _context3.next = 14;
+                return regions.json();
+
+              case 14:
+                regions = _context3.sent;
+                _this5.regions = regions;
+                return _context3.abrupt("return", _this5.regions);
+
+              case 17:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
+    },
+    updateValue: function updateValue(value) {
+      if (this.config.multiple) {
+        this.update(value.map(function (v) {
+          return v.value;
+        }));
+      } else {
+        if (value) {
+          this.update(value.value);
+        } else {
+          this.update(null);
+        }
+      }
+    },
+    focus: function focus() {
+      this.$refs.input.focus();
     }
   }
 });
@@ -336,6 +668,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_split__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_split__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/first */ "./node_modules/lodash/first.js");
 /* harmony import */ var lodash_first__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_first__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -351,37 +698,142 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [Fieldtype],
   mounted: function mounted() {
-    this.initializeFromValue();
+    this.updateValue();
   },
   data: function data() {
     return {
       country: null,
-      region: null
+      regions: null
     };
   },
   watch: {
-    country: function country(_country) {
-      this.$refs.region.getRegions(this.country);
+    country: function country(_country, oldCountry) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var regions;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!_country) {
+                  _this.update(null);
+                }
+
+                _context.next = 3;
+                return _this.$refs.regions.getRegions(_this.country);
+
+              case 3:
+                regions = _context.sent;
+
+                // if (regions.length > 0) {
+                _this.update(_country); // }
+
+
+                if (_country !== oldCountry) {
+                  _this.$refs.regions.update(null);
+                }
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
-    region: function region(_region) {
-      if (_region) {
-        this.update(this.region);
+    regions: function regions(_regions) {
+      if (_regions) {
+        this.update(this.regions);
       }
     },
     value: function value() {
-      this.initializeFromValue();
+      this.updateValue();
     }
   },
   methods: {
-    initializeFromValue: function initializeFromValue() {
-      var _this = this;
+    countryFieldTypeLoaded: function countryFieldTypeLoaded() {
+      this.updateValue();
+    },
+    regionFieldTypeLoaded: function regionFieldTypeLoaded() {
+      this.updateValue();
+    },
+    updateValue: function updateValue() {
+      var _this2 = this;
 
-      var countryCode = lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_split__WEBPACK_IMPORTED_MODULE_0___default()(this.value, '-'));
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var regionCode, countryCode, regions;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log('updateValue');
+                regionCode = _this2.value;
+                console.log('regionCode 1', regionCode);
 
-      this.$refs.country.getCountriesAndSetCountry(countryCode).then(function () {
-        _this.$refs.region.getRegions(_this.country).then(function () {
-          _this.$refs.region.update(_this.value);
-        });
+                if (regionCode) {
+                  _context2.next = 5;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 5:
+                countryCode = regionCode.includes('-') ? lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_split__WEBPACK_IMPORTED_MODULE_0___default()(regionCode, '-')) : regionCode;
+                console.log('countryCode 1', countryCode);
+                _context2.next = 9;
+                return _this2.$refs.country.setSelected(countryCode);
+
+              case 9:
+                _context2.next = 11;
+                return _this2.$refs.regions.getRegions(countryCode);
+
+              case 11:
+                regions = _context2.sent;
+                console.log('regions', regions.length, regions);
+
+                if (regions.length > 0) {
+                  console.log('A');
+
+                  _this2.$refs.regions.update(_this2.value);
+                } else {
+                  console.log('B');
+
+                  _this2.$refs.regions.update(null);
+                }
+
+              case 14:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./vendor/statamic/cms/resources/js/components/fieldtypes/HasInputOptions.js":
+/*!***********************************************************************************!*\
+  !*** ./vendor/statamic/cms/resources/js/components/fieldtypes/HasInputOptions.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    normalizeInputOptions: function normalizeInputOptions(options) {
+      return _.map(options, function (value, key) {
+        return {
+          'value': Array.isArray(options) ? value : key,
+          'label': value || key
+        };
       });
     }
   }
@@ -4675,41 +5127,6 @@ module.exports = isLength;
 
 /***/ }),
 
-/***/ "./node_modules/lodash/isNil.js":
-/*!**************************************!*\
-  !*** ./node_modules/lodash/isNil.js ***!
-  \**************************************/
-/***/ ((module) => {
-
-/**
- * Checks if `value` is `null` or `undefined`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
- * @example
- *
- * _.isNil(null);
- * // => true
- *
- * _.isNil(void 0);
- * // => true
- *
- * _.isNil(NaN);
- * // => false
- */
-function isNil(value) {
-  return value == null;
-}
-
-module.exports = isNil;
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/isObject.js":
 /*!*****************************************!*\
   !*** ./node_modules/lodash/isObject.js ***!
@@ -5472,19 +5889,175 @@ var render = function () {
     "div",
     [
       _c("v-select", {
+        ref: "input",
+        staticClass: "flex-1",
         attrs: {
+          clearable: _vm.clearable || !!_vm.config.clearable,
           options: _vm.countries,
-          placeholder: _vm.placeholder || _vm.config.display,
-        },
-        on: { input: _vm.changed },
-        model: {
-          value: _vm.country,
-          callback: function ($$v) {
-            _vm.country = $$v
+          placeholder:
+            _vm.placeholder ||
+            _vm.config.placeholder ||
+            _vm.__("Select Country"),
+          multiple: _vm.multiple || _vm.config.multiple,
+          "reset-on-options-change": _vm.resetOnOptionsChange,
+          "close-on-select": true,
+          value: _vm.selected,
+          "create-option": function (label, value) {
+            return { value: value, label: label }
           },
-          expression: "country",
         },
+        on: {
+          input: _vm.updateValue,
+          "search:focus": function ($event) {
+            return _vm.$emit("focus")
+          },
+          "search:blur": function ($event) {
+            return _vm.$emit("blur")
+          },
+        },
+        scopedSlots: _vm._u(
+          [
+            _vm.config.multiple
+              ? {
+                  key: "selected-option-container",
+                  fn: function () {
+                    return [_c("i", { staticClass: "hidden" })]
+                  },
+                  proxy: true,
+                }
+              : null,
+            _vm.config.multiple
+              ? {
+                  key: "search",
+                  fn: function (ref) {
+                    var events = ref.events
+                    var attributes = ref.attributes
+                    return [
+                      _c(
+                        "input",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              staticClass: "vs__search",
+                              attrs: {
+                                placeholder: _vm.config.placeholder,
+                                type: "search",
+                              },
+                            },
+                            "input",
+                            attributes,
+                            false
+                          ),
+                          events
+                        )
+                      ),
+                    ]
+                  },
+                }
+              : null,
+            {
+              key: "no-options",
+              fn: function () {
+                return [
+                  _c("div", {
+                    staticClass: "text-sm text-grey-70 text-left py-1 px-2",
+                    domProps: {
+                      textContent: _vm._s(_vm.__("No options to choose from.")),
+                    },
+                  }),
+                ]
+              },
+              proxy: true,
+            },
+            _vm.config.multiple && _vm.selected && _vm.selected.length
+              ? {
+                  key: "footer",
+                  fn: function (ref) {
+                    var deselect = ref.deselect
+                    return [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "vs__selected-options-outside flex flex-wrap",
+                        },
+                        _vm._l(_vm.selected, function (selectedOption) {
+                          return _c(
+                            "span",
+                            {
+                              key: selectedOption.value,
+                              staticClass: "vs__selected mt-1",
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(selectedOption.label) +
+                                  "\n                        "
+                              ),
+                              !_vm.readOnly
+                                ? _c(
+                                    "button",
+                                    {
+                                      staticClass: "vs__deselect",
+                                      attrs: {
+                                        type: "button",
+                                        "aria-label": _vm.__("Deselect option"),
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          return deselect(selectedOption)
+                                        },
+                                      },
+                                    },
+                                    [_c("span", [_vm._v("×")])]
+                                  )
+                                : _c(
+                                    "button",
+                                    {
+                                      staticClass: "vs__deselect",
+                                      attrs: { type: "button" },
+                                    },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "opacity-50" },
+                                        [_vm._v("×")]
+                                      ),
+                                    ]
+                                  ),
+                            ]
+                          )
+                        }),
+                        0
+                      ),
+                    ]
+                  },
+                }
+              : null,
+          ],
+          null,
+          true
+        ),
       }),
+      _vm._v(" "),
+      _vm.config.max_items
+        ? _c(
+            "div",
+            {
+              staticClass: "text-xs ml-1 mt-1.5",
+              class: _vm.limitIndicatorColor,
+            },
+            [
+              _c("span", {
+                domProps: { textContent: _vm._s(_vm.currentLength) },
+              }),
+              _vm._v("/"),
+              _c("span", {
+                domProps: { textContent: _vm._s(_vm.config.max_items) },
+              }),
+            ]
+          )
+        : _vm._e(),
     ],
     1
   )
@@ -5516,19 +6089,153 @@ var render = function () {
     "div",
     [
       _c("v-select", {
+        ref: "input",
+        staticClass: "flex-1",
         attrs: {
+          clearable: _vm.clearable || !!_vm.config.clearable,
           options: _vm.regions,
-          placeholder: _vm.placeholder || _vm.config.display,
-          resetOnOptionsChange: true,
-        },
-        on: { input: _vm.internalUpdate },
-        model: {
-          value: _vm.region,
-          callback: function ($$v) {
-            _vm.region = $$v
+          placeholder:
+            _vm.placeholder || _vm.config.display || _vm.__("Select Region"),
+          multiple: _vm.multiple || _vm.config.multiple,
+          "reset-on-options-change": _vm.resetOnOptionsChange,
+          "close-on-select": true,
+          value: _vm.selected,
+          "create-option": function (label, value) {
+            return { value: value, label: label }
           },
-          expression: "region",
         },
+        on: {
+          input: _vm.updateValue,
+          "search:focus": function ($event) {
+            return _vm.$emit("focus")
+          },
+          "search:blur": function ($event) {
+            return _vm.$emit("blur")
+          },
+        },
+        scopedSlots: _vm._u(
+          [
+            _vm.config.multiple
+              ? {
+                  key: "selected-option-container",
+                  fn: function () {
+                    return [_c("i", { staticClass: "hidden" })]
+                  },
+                  proxy: true,
+                }
+              : null,
+            _vm.config.multiple
+              ? {
+                  key: "search",
+                  fn: function (ref) {
+                    var events = ref.events
+                    var attributes = ref.attributes
+                    return [
+                      _c(
+                        "input",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              staticClass: "vs__search",
+                              attrs: {
+                                placeholder: _vm.config.placeholder,
+                                type: "search",
+                              },
+                            },
+                            "input",
+                            attributes,
+                            false
+                          ),
+                          events
+                        )
+                      ),
+                    ]
+                  },
+                }
+              : null,
+            {
+              key: "no-options",
+              fn: function () {
+                return [
+                  _c("div", {
+                    staticClass: "text-sm text-grey-70 text-left py-1 px-2",
+                    domProps: {
+                      textContent: _vm._s(_vm.__("No options to choose from.")),
+                    },
+                  }),
+                ]
+              },
+              proxy: true,
+            },
+            _vm.config.multiple && _vm.selected && _vm.selected.length
+              ? {
+                  key: "footer",
+                  fn: function (ref) {
+                    var deselect = ref.deselect
+                    return [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "vs__selected-options-outside flex flex-wrap",
+                        },
+                        _vm._l(_vm.selected, function (selectedOption) {
+                          return _c(
+                            "span",
+                            {
+                              key: selectedOption.value,
+                              staticClass: "vs__selected mt-1",
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(selectedOption.label) +
+                                  "\n                        "
+                              ),
+                              !_vm.readOnly
+                                ? _c(
+                                    "button",
+                                    {
+                                      staticClass: "vs__deselect",
+                                      attrs: {
+                                        type: "button",
+                                        "aria-label": _vm.__("Deselect option"),
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          return deselect(selectedOption)
+                                        },
+                                      },
+                                    },
+                                    [_c("span", [_vm._v("×")])]
+                                  )
+                                : _c(
+                                    "button",
+                                    {
+                                      staticClass: "vs__deselect",
+                                      attrs: { type: "button" },
+                                    },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "opacity-50" },
+                                        [_vm._v("×")]
+                                      ),
+                                    ]
+                                  ),
+                            ]
+                          )
+                        }),
+                        0
+                      ),
+                    ]
+                  },
+                }
+              : null,
+          ],
+          null,
+          true
+        ),
       }),
     ],
     1
@@ -5562,7 +6269,12 @@ var render = function () {
     [
       _c("country-fieldtype", {
         ref: "country",
-        attrs: { handle: "country", placeholder: "Country" },
+        attrs: {
+          handle: "country",
+          placeholder: _vm.config.country_placeholder,
+          clearable: _vm.config.clearable,
+        },
+        on: { loaded: _vm.countryFieldTypeLoaded },
         model: {
           value: _vm.country,
           callback: function ($$v) {
@@ -5573,15 +6285,20 @@ var render = function () {
       }),
       _vm._v(" "),
       _c("region-fieldtype", {
-        ref: "region",
+        ref: "regions",
         staticClass: "mt-1",
-        attrs: { handle: "region", placeholder: _vm.config.display },
+        attrs: {
+          handle: "regions",
+          placeholder: _vm.config.region_placeholder,
+          clearable: _vm.config.clearable,
+        },
+        on: { loaded: _vm.regionFieldTypeLoaded },
         model: {
-          value: _vm.region,
+          value: _vm.regions,
           callback: function ($$v) {
-            _vm.region = $$v
+            _vm.regions = $$v
           },
-          expression: "region",
+          expression: "regions",
         },
       }),
     ],
