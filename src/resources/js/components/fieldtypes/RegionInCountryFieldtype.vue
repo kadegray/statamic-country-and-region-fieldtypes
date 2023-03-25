@@ -71,10 +71,7 @@ export default {
 
         async updateValue() {
 
-            console.log('updateValue');
-
             let regionCode = this.value;
-            console.log('regionCode 1', regionCode);
             if (!regionCode) {
                 return;
             }
@@ -82,17 +79,13 @@ export default {
             let countryCode = regionCode.includes('-')
                 ? _first(_split(regionCode, '-'))
                 : regionCode;
-            console.log('countryCode 1', countryCode);
 
             await this.$refs.country.setSelected(countryCode);
 
             const regions = await this.$refs.regions.getRegions(countryCode);
-            console.log('regions', regions.length, regions);
             if (regions.length > 0) {
-                console.log('A');
                 this.$refs.regions.update(this.value);
             } else {
-                console.log('B');
                 this.$refs.regions.update(null);
             }
         },
