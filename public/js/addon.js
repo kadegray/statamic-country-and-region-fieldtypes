@@ -767,42 +767,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log('updateValue');
                 regionCode = _this2.value;
-                console.log('regionCode 1', regionCode);
 
                 if (regionCode) {
-                  _context2.next = 5;
+                  _context2.next = 3;
                   break;
                 }
 
                 return _context2.abrupt("return");
 
-              case 5:
+              case 3:
                 countryCode = regionCode.includes('-') ? lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_split__WEBPACK_IMPORTED_MODULE_0___default()(regionCode, '-')) : regionCode;
-                console.log('countryCode 1', countryCode);
-                _context2.next = 9;
+                _context2.next = 6;
                 return _this2.$refs.country.setSelected(countryCode);
 
-              case 9:
-                _context2.next = 11;
+              case 6:
+                _context2.next = 8;
                 return _this2.$refs.regions.getRegions(countryCode);
 
-              case 11:
+              case 8:
                 regions = _context2.sent;
-                console.log('regions', regions.length, regions);
 
                 if (regions.length > 0) {
-                  console.log('A');
-
                   _this2.$refs.regions.update(_this2.value);
                 } else {
-                  console.log('B');
-
                   _this2.$refs.regions.update(null);
                 }
 
-              case 14:
+              case 10:
               case "end":
                 return _context2.stop();
             }
