@@ -121,14 +121,24 @@ class RegionFieldtype extends Fieldtype
         $driver->setLocale($currentLocale);
         $isoCodes = new IsoCodesFactory(null, $driver);
 
-        if (!$value) {
-            return;
+        $regions = [];
+
+        if (is_string($value)) {
+            $regions[] = $value;
+        } else {
+            $regions = $value;
         }
 
-        $regionName = $isoCodes->getSubdivisions()
-            ->getByCode($value)
-            ->getLocalName();
+        foreach ($regions as &$region) {
+            $region = $isoCodes->getSubdivisions()
+                ->getByCode($region)
+                ->getLocalName();
+        }
 
-        return $regionName;
+        if (count($regions) > 1) {
+            return $regions;
+        }
+
+        return $regions[0];
     }
 }

@@ -96,10 +96,29 @@ class CountryFieldtype extends Fieldtype
         $driver->setLocale($currentLocale);
         $isoCodes = new IsoCodesFactory(null, $driver);
 
-        $countryName = $isoCodes->getCountries()
-            ->getByAlpha2($value)
-            ->getLocalName();
+        $countries = [];
 
-        return $countryName;
+        if (is_string($value)) {
+            $countries[] = $value;
+        } else {
+            $countries = $value;
+        }
+
+        foreach ($countries as &$country) {
+            $country = $isoCodes->getCountries()
+                ->getByAlpha2($country)
+                ->getLocalName();
+        }
+
+        if (count($countries) > 1) {
+            return $countries;
+        }
+
+        return $countries[0];
+    }
+
+    public function toShallowAugmentedCollection($value)
+    {
+        return 'test';
     }
 }
