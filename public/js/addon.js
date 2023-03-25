@@ -596,8 +596,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this5.countries_override = countriesOverride;
-                _this5.regions = []; // this.clear();
-
+                _this5.regions = [];
                 _context3.next = 9;
                 break;
 

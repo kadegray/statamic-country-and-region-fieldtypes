@@ -248,7 +248,6 @@ export default {
             if (countriesOverride) {
                 this.countries_override = countriesOverride;
                 this.regions = [];
-                // this.clear();
             } else if (!this.countries || this.countries?.length === 0) {
                 this.regions = [];
 
