@@ -104,6 +104,10 @@ class CountryFieldtype extends Fieldtype
             $countries = $value;
         }
 
+        if (!$countries) {
+            return null;
+        }
+
         foreach ($countries as &$country) {
             $country = $isoCodes->getCountries()
                 ->getByAlpha2($country)

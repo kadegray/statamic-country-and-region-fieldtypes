@@ -129,6 +129,10 @@ class RegionFieldtype extends Fieldtype
             $regions = $value;
         }
 
+        if (!$regions) {
+            return null;
+        }
+
         foreach ($regions as &$region) {
             $region = $isoCodes->getSubdivisions()
                 ->getByCode($region)

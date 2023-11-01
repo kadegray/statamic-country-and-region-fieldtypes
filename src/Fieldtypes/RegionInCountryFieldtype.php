@@ -2,6 +2,7 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
+use Error;
 use Statamic\Fields\Fieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\RegionFieldtypeFilter;
 use Sokil\IsoCodes\IsoCodesFactory;
@@ -91,13 +92,21 @@ class RegionInCountryFieldtype extends Fieldtype
 
         list($country) = explode('-', $region);
 
-        $countryName = $isoCodes->getCountries()
-            ->getByAlpha2($country)
-            ->getLocalName();
+        try {
+            $countryName = $isoCodes->getCountries()
+                ->getByAlpha2($country)
+                ->getLocalName();
+        } catch (Error $error) {
+            return null;
+        }
 
-        $regionName = $isoCodes->getSubdivisions()
-            ->getByCode($region)
-            ->getLocalName();
+        try {
+            $regionName = $isoCodes->getSubdivisions()
+                ->getByCode($region)
+                ->getLocalName();
+        } catch (Error $error) {
+            return "$countryName";
+        }
 
         return "$regionName, $countryName";
     }
