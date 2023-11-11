@@ -2,6 +2,7 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
+use Error;
 use Statamic\Fields\Fieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\RegionFieldtypeFilter;
 use Sokil\IsoCodes\IsoCodesFactory;
@@ -110,17 +111,18 @@ class RegionFieldtype extends Fieldtype
                 'default' => true,
                 'width' => 50,
             ],
+            'render_invalid_value' => [
+                'display' => __('Render Invalid Value'),
+                'instructions' => 'In antlers, this will render the raw value if the value is not a principal subdivision code (ISO 3166-2). A use case for this would be if you have imported region data that is not in principal subdivision code format and you want it to render anyway.',
+                'type' => 'toggle',
+                'default' => false,
+                'width' => 50,
+            ],
         ];
     }
 
     public function augment($value)
     {
-        $currentLocale = data_get(Site::current(), 'locale');
-
-        $driver = new SymfonyTranslationDriver();
-        $driver->setLocale($currentLocale);
-        $isoCodes = new IsoCodesFactory(null, $driver);
-
         $regions = [];
 
         if (is_string($value)) {
@@ -133,10 +135,35 @@ class RegionFieldtype extends Fieldtype
             return null;
         }
 
+        $currentLocale = data_get(Site::current(), 'locale');
+
+        $driver = new SymfonyTranslationDriver();
+        $driver->setLocale($currentLocale);
+        $isoCodes = new IsoCodesFactory(null, $driver);
+
+        $renderInvalidValue = $this->config('render_invalid_value');
+        $iso31662Regex = '/^[A-Za-z0-9]{2}-[A-Za-z0-9]{2,3}$/';
         foreach ($regions as &$region) {
-            $region = $isoCodes->getSubdivisions()
-                ->getByCode($region)
-                ->getLocalName();
+
+            $valid = preg_match($iso31662Regex, $region);
+            if ($valid !== 1) {
+                if (!$renderInvalidValue) {
+                    $region = null;
+                }
+                continue;
+            }
+
+            try {
+                $regionCode = $isoCodes->getSubdivisions()->getByCode($region);
+                $localName = $regionCode ? $regionCode->getLocalName() : $region;
+            } catch (Error $error) {
+                if (!$renderInvalidValue) {
+                    $region = null;
+                }
+                continue;
+            }
+
+            $region = $localName;
         }
 
         if (count($regions) > 1) {

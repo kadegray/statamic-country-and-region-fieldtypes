@@ -79,34 +79,58 @@ class RegionInCountryFieldtype extends Fieldtype
                 'type' => 'country',
                 'width' => 50,
             ],
+            'render_invalid_value' => [
+                'display' => __('Render Invalid Value'),
+                'instructions' => 'In antlers, this will render the raw value if the value is not a principal subdivision code (ISO 3166-2). A use case for this would be if you have imported region data that is not in principal subdivision code format and you want it to render anyway.',
+                'type' => 'toggle',
+                'default' => false,
+                'width' => 50,
+            ],
         ];
     }
 
-    public function augment($region)
+    public function augment($value)
     {
+        if (!$value) {
+            return null;
+        }
+
+        $renderInvalidValue = $this->config('render_invalid_value');
+        $iso31662Regex = '/^[A-Za-z0-9]{2}-[A-Za-z0-9]{2,3}$/';
+        $valid = preg_match($iso31662Regex, $value);
+        if ($valid !== 1) {
+            return $renderInvalidValue ? $value : null;
+        }
+
         $currentLocale = data_get(Site::current(), 'locale');
 
         $driver = new SymfonyTranslationDriver();
         $driver->setLocale($currentLocale);
         $isoCodes = new IsoCodesFactory(null, $driver);
 
-        list($country) = explode('-', $region);
-
         try {
-            $countryName = $isoCodes->getCountries()
-                ->getByAlpha2($country)
-                ->getLocalName();
+            $regionCode = $isoCodes->getSubdivisions()->getByCode($value);
+            $regionLocalName = $regionCode->getLocalName();
         } catch (Error $error) {
+            if ($renderInvalidValue) {
+                return $value;
+            }
             return null;
         }
+        $regionName = $regionLocalName;
+
+        list($country) = explode('-', $value);
 
         try {
-            $regionName = $isoCodes->getSubdivisions()
-                ->getByCode($region)
-                ->getLocalName();
+            $countryCode = $isoCodes->getCountries()->getByAlpha2($country);
+            $countryLocalName = $countryCode->getLocalName();
         } catch (Error $error) {
-            return "$countryName";
+            if ($renderInvalidValue) {
+                return $value;
+            }
+            return $regionName;
         }
+        $countryName = $countryLocalName;
 
         return "$regionName, $countryName";
     }

@@ -3,8 +3,6 @@
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters;
 
 use Statamic\Extend\HasFields;
-use Statamic\Support\Arr;
-use Statamic\Support\Str;
 use Sokil\IsoCodes\IsoCodesFactory;
 
 class CountryFieldtypeFilter

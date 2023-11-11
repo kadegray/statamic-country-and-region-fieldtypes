@@ -2,6 +2,7 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
+use Error;
 use Statamic\Fields\Fieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\CountryFieldtypeFilter;
 use Sokil\IsoCodes\IsoCodesFactory;
@@ -85,16 +86,18 @@ class CountryFieldtype extends Fieldtype
                 'type' => 'country',
                 'width' => 50,
             ],
+            'render_invalid_value' => [
+                'display' => __('Render Invalid Value'),
+                'instructions' => 'In antlers, this will render the raw value if the value is not a country code (ISO 3166-1). A use case for this would be if you have imported country data that is not in country code format and you want it to render anyway.',
+                'type' => 'toggle',
+                'default' => false,
+                'width' => 50,
+            ],
         ];
     }
 
     public function augment($value)
     {
-        $currentLocale = data_get(Site::current(), 'locale');
-
-        $driver = new SymfonyTranslationDriver();
-        $driver->setLocale($currentLocale);
-        $isoCodes = new IsoCodesFactory(null, $driver);
 
         $countries = [];
 
@@ -108,10 +111,35 @@ class CountryFieldtype extends Fieldtype
             return null;
         }
 
+        $currentLocale = data_get(Site::current(), 'locale');
+
+        $driver = new SymfonyTranslationDriver();
+        $driver->setLocale($currentLocale);
+        $isoCodes = new IsoCodesFactory(null, $driver);
+
+        $renderInvalidValue = $this->config('render_invalid_value');
+        $iso31661Regex = '/^[A-Za-z0-9]{2}$/';
         foreach ($countries as &$country) {
-            $country = $isoCodes->getCountries()
-                ->getByAlpha2($country)
-                ->getLocalName();
+
+            $valid = preg_match($iso31661Regex, $country);
+            if ($valid !== 1) {
+                if (!$renderInvalidValue) {
+                    $country = null;
+                }
+                continue;
+            }
+
+            try {
+                $countryCode = $isoCodes->getCountries()->getByAlpha2($country);
+                $countryLocalName = $countryCode ? $countryCode->getLocalName() : $country;
+            } catch (Error $error) {
+                if (!$renderInvalidValue) {
+                    $country = null;
+                }
+                continue;
+            }
+
+            $country = $countryLocalName;
         }
 
         if (count($countries) > 1) {
@@ -119,10 +147,5 @@ class CountryFieldtype extends Fieldtype
         }
 
         return $countries[0];
-    }
-
-    public function toShallowAugmentedCollection($value)
-    {
-        return 'test';
     }
 }
