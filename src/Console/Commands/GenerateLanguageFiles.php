@@ -33,10 +33,10 @@ class GenerateLanguageFiles extends Command
     public function handle()
     {
         // Clean out the lang directory.
-        exec('rm -f -r ' . __DIR__ . "/../../../lang/*");
+        exec('rm -f -r ' . base_path() . "/lang/*");
 
         // sokil/php-isocodes-db-i18n locales.
-        $locales = scandir(__DIR__ . "/../../../vendor/sokil/php-isocodes-db-i18n/messages/");
+        $locales = scandir(base_path() . "/vendor/sokil/php-isocodes-db-i18n/messages/");
         $locales = Arr::where($locales, function (string $value) {
             return !in_array($value, ['.', '..', 'LICENSE']);
         });
@@ -53,7 +53,7 @@ class GenerateLanguageFiles extends Command
                 continue;
             }
 
-            $langDirectory = __DIR__ . "/../../../lang/{$locale}";
+            $langDirectory = base_path() . "/lang/{$locale}";
             if (!is_dir($langDirectory)) {
                 mkdir($langDirectory);
             }
@@ -91,7 +91,7 @@ class GenerateLanguageFiles extends Command
                 continue;
             }
 
-            $langDirectory = __DIR__ . "/../../../lang/{$locale}";
+            $langDirectory = base_path() . "/lang/{$locale}";
             if (!is_dir($langDirectory)) {
                 mkdir($langDirectory);
             }

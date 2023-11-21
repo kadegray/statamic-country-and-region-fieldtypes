@@ -38,7 +38,7 @@ trait FetchLocale
     {
         // sokil/php-isocodes-db-i18n locales.
         $locales = Cache::remember('kadegray_scarf_sokil_locales', $this->twentyFourHoursInSeconds, function () {
-            $locales = scandir(__DIR__ . "/../../vendor/sokil/php-isocodes-db-i18n/messages/");
+            $locales = scandir(base_path() . "/vendor/sokil/php-isocodes-db-i18n/messages/");
             $locales = Arr::where($locales, function (string $value) {
                 return !in_array($value, ['.', '..', 'LICENSE']);
             });
