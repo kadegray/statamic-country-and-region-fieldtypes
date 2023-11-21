@@ -2,15 +2,14 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
-use Error;
+use Illuminate\Support\Facades\App;
 use Statamic\Fields\Fieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\CountryFieldtypeFilter;
-use Sokil\IsoCodes\IsoCodesFactory;
-use Statamic\Facades\Site;
-use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Traits\FetchLocale;
 
 class CountryFieldtype extends Fieldtype
 {
+    use FetchLocale;
 
     /**
      * The blank/default value.
@@ -98,7 +97,6 @@ class CountryFieldtype extends Fieldtype
 
     public function augment($value)
     {
-
         $countries = [];
 
         if (is_string($value)) {
@@ -111,13 +109,14 @@ class CountryFieldtype extends Fieldtype
             return null;
         }
 
-        $currentLocale = data_get(Site::current(), 'locale');
-
-        $driver = new SymfonyTranslationDriver();
-        $driver->setLocale($currentLocale);
-        $isoCodes = new IsoCodesFactory(null, $driver);
-
         $renderInvalidValue = $this->config('render_invalid_value');
+
+        $originalLocale = App::currentLocale();
+        $scarfLocale = $this->getScarfLocale();
+        if ($scarfLocale) {
+            App::setLocale($scarfLocale);
+        }
+
         $iso31661Regex = '/^[A-Za-z0-9]{2}$/';
         foreach ($countries as &$country) {
 
@@ -129,10 +128,9 @@ class CountryFieldtype extends Fieldtype
                 continue;
             }
 
-            try {
-                $countryCode = $isoCodes->getCountries()->getByAlpha2($country);
-                $countryLocalName = $countryCode ? $countryCode->getLocalName() : $country;
-            } catch (Error $error) {
+            $langKey = "kadegray_scarf::countries.{$country}";
+            $countryLocalName = __($langKey);
+            if ($countryLocalName === $langKey) {
                 if (!$renderInvalidValue) {
                     $country = null;
                 }
@@ -140,6 +138,10 @@ class CountryFieldtype extends Fieldtype
             }
 
             $country = $countryLocalName;
+        }
+
+        if ($scarfLocale) {
+            App::setLocale($originalLocale);
         }
 
         if (count($countries) > 1) {

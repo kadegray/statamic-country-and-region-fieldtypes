@@ -2,6 +2,7 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes;
 
+use Kadegray\StatamicCountryAndRegionFieldtypes\Console\Commands\GenerateLanguageFiles;
 use Statamic\Providers\AddonServiceProvider;
 use Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes\CountryFieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes\RegionFieldtype;
@@ -22,5 +23,13 @@ class ServiceProvider extends AddonServiceProvider
         CountryFieldtype::register();
         RegionFieldtype::register();
         RegionInCountryFieldtype::register();
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                GenerateLanguageFiles::class,
+            ]);
+        }
+
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'kadegray_scarf');
     }
 }

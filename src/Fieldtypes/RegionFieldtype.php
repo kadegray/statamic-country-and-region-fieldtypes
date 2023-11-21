@@ -2,15 +2,14 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
-use Error;
+use Illuminate\Support\Facades\App;
 use Statamic\Fields\Fieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\RegionFieldtypeFilter;
-use Sokil\IsoCodes\IsoCodesFactory;
-use Statamic\Facades\Site;
-use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Traits\FetchLocale;
 
 class RegionFieldtype extends Fieldtype
 {
+    use FetchLocale;
 
     /**
      * The blank/default value.
@@ -135,13 +134,14 @@ class RegionFieldtype extends Fieldtype
             return null;
         }
 
-        $currentLocale = data_get(Site::current(), 'locale');
-
-        $driver = new SymfonyTranslationDriver();
-        $driver->setLocale($currentLocale);
-        $isoCodes = new IsoCodesFactory(null, $driver);
-
         $renderInvalidValue = $this->config('render_invalid_value');
+
+        $originalLocale = App::currentLocale();
+        $scarfLocale = $this->getScarfLocale();
+        if ($scarfLocale) {
+            App::setLocale($scarfLocale);
+        }
+
         $iso31662Regex = '/^[A-Za-z0-9]{2}-[A-Za-z0-9]{2,3}$/';
         foreach ($regions as &$region) {
 
@@ -153,10 +153,9 @@ class RegionFieldtype extends Fieldtype
                 continue;
             }
 
-            try {
-                $regionCode = $isoCodes->getSubdivisions()->getByCode($region);
-                $localName = $regionCode ? $regionCode->getLocalName() : $region;
-            } catch (Error $error) {
+            $langKey = "kadegray_scarf::regions.{$region}";
+            $localName = __($langKey);
+            if ($localName === $langKey) {
                 if (!$renderInvalidValue) {
                     $region = null;
                 }
@@ -164,6 +163,10 @@ class RegionFieldtype extends Fieldtype
             }
 
             $region = $localName;
+        }
+
+        if ($scarfLocale) {
+            App::setLocale($originalLocale);
         }
 
         if (count($regions) > 1) {

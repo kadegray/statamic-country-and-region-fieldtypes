@@ -2,15 +2,14 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes;
 
-use Error;
+use Illuminate\Support\Facades\App;
 use Statamic\Fields\Fieldtype;
 use Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters\RegionFieldtypeFilter;
-use Sokil\IsoCodes\IsoCodesFactory;
-use Statamic\Facades\Site;
-use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Traits\FetchLocale;
 
 class RegionInCountryFieldtype extends Fieldtype
 {
+    use FetchLocale;
 
     /**
      * The blank/default value.
@@ -96,22 +95,25 @@ class RegionInCountryFieldtype extends Fieldtype
         }
 
         $renderInvalidValue = $this->config('render_invalid_value');
+
+        $originalLocale = App::currentLocale();
+        $scarfLocale = $this->getScarfLocale();
+        if ($scarfLocale) {
+            App::setLocale($scarfLocale);
+        }
+
         $iso31662Regex = '/^[A-Za-z0-9]{2}-[A-Za-z0-9]{2,3}$/';
         $valid = preg_match($iso31662Regex, $value);
         if ($valid !== 1) {
             return $renderInvalidValue ? $value : null;
         }
 
-        $currentLocale = data_get(Site::current(), 'locale');
-
-        $driver = new SymfonyTranslationDriver();
-        $driver->setLocale($currentLocale);
-        $isoCodes = new IsoCodesFactory(null, $driver);
-
-        try {
-            $regionCode = $isoCodes->getSubdivisions()->getByCode($value);
-            $regionLocalName = $regionCode->getLocalName();
-        } catch (Error $error) {
+        $regionLangKey = "kadegray_scarf::regions.{$value}";
+        $regionLocalName = __($regionLangKey);
+        if ($regionLocalName === $regionLangKey) {
+            if ($scarfLocale) {
+                App::setLocale($originalLocale);
+            }
             if ($renderInvalidValue) {
                 return $value;
             }
@@ -121,15 +123,22 @@ class RegionInCountryFieldtype extends Fieldtype
 
         list($country) = explode('-', $value);
 
-        try {
-            $countryCode = $isoCodes->getCountries()->getByAlpha2($country);
-            $countryLocalName = $countryCode->getLocalName();
-        } catch (Error $error) {
+        $countryLangKey = "kadegray_scarf::countries.{$country}";
+        $countryLocalName = __($countryLangKey);
+        if ($countryLocalName === $countryLangKey) {
+            if ($scarfLocale) {
+                App::setLocale($originalLocale);
+            }
             if ($renderInvalidValue) {
                 return $value;
             }
             return $regionName;
         }
+
+        if ($scarfLocale) {
+            App::setLocale($originalLocale);
+        }
+
         $countryName = $countryLocalName;
 
         return "$regionName, $countryName";
