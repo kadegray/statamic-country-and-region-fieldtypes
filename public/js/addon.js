@@ -196,7 +196,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context2.next = 3;
-                return fetch('/!/statamic-country-and-region-fieldtypes/countries');
+                return fetch('/!/statamic-country-and-region-fieldtypes/countries', {
+                  method: "POST",
+                  headers: {
+                    "X-CSRF-Token": Statamic.$config.get("csrfToken")
+                  }
+                });
 
               case 3:
                 response = _context2.sent;
@@ -611,7 +616,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
                 _context3.next = 11;
-                return fetch("/!/statamic-country-and-region-fieldtypes/".concat(_this5.countries, "/regions"));
+                return fetch("/!/statamic-country-and-region-fieldtypes/".concat(_this5.countries, "/regions"), {
+                  method: "POST",
+                  headers: {
+                    "X-CSRF-Token": Statamic.$config.get("csrfToken")
+                  }
+                });
 
               case 11:
                 regions = _context3.sent;

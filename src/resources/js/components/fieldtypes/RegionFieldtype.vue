@@ -254,7 +254,12 @@ export default {
                 return this.regions;
             }
 
-            let regions = await fetch(`/!/statamic-country-and-region-fieldtypes/${this.countries}/regions`);
+            let regions = await fetch(`/!/statamic-country-and-region-fieldtypes/${this.countries}/regions`, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-Token": Statamic.$config.get("csrfToken"),
+                },
+            });
             regions = await regions.json();
 
             this.regions = regions;

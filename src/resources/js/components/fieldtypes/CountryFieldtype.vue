@@ -152,8 +152,12 @@ export default {
         async getCountries() {
 
             if (!this.countries || this.countries.length === 0) {
-                // debugger;
-                const response = await fetch('/!/statamic-country-and-region-fieldtypes/countries');
+                const response = await fetch('/!/statamic-country-and-region-fieldtypes/countries', {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-Token": Statamic.$config.get("csrfToken"),
+                    },
+                });
                 this.countries = await response.json();
             }
 
