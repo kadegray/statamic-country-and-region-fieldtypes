@@ -159,6 +159,7 @@ If you have a country select above a region select please see the below subheadi
 
 #### Endpoint: `/countries_and_regions/{countryCode}/regions`
 
+If you have a country select above a region select and you want the region options to update when the country is selected. Then see this example:
 
 ```html
 <select name="country" id="country" onchange="reloadRegions()">
@@ -171,12 +172,12 @@ If you have a country select above a region select please see the below subheadi
 
 <script>
     async function reloadRegions() {
-        const regionCode = document.getElementById("country").value;
-        if (!regionCode) {
+        const countryCode = document.getElementById("country").value;
+        if (!countryCode) {
             return;
         }
         const response = await fetch(
-            `/countries_and_regions/${regionCode}/regions`,
+            `/countries_and_regions/${countryCode}/regions`,
             {
                 method: "POST",
                 headers: {
@@ -184,13 +185,13 @@ If you have a country select above a region select please see the below subheadi
                 },
             }
         );
-        const countries = await response.json();
+        const regions = await response.json();
         const regionElement = document.getElementById("region");
         regionElement.innerHTML = "";
-        for (let country of countries) {
+        for (let region of regions) {
             let option = document.createElement("option");
-            option.text = country.label;
-            option.value = country.value;
+            option.text = region.label;
+            option.value = region.value;
             regionElement.add(option);
         }
     }
