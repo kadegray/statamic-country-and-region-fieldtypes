@@ -12,6 +12,8 @@
 - Locale for these Fieldtypes work in Control Panel.
 - When using multi-site these fieldtypes will display the country or region in the locale of the (multi) site.
 
+<hr>
+
 ## How to Install
 
 Search 'Country and region' addon in the `Tools > Addons` section of the Statamic control panel and click **install**, or run the following command from the root of your project:
@@ -19,6 +21,8 @@ Search 'Country and region' addon in the `Tools > Addons` section of the Statami
 ```bash
 composer require kadegray/statamic-country-and-region-fieldtypes
 ```
+
+<hr>
 
 ## How to Use
 
@@ -78,6 +82,8 @@ The Region in Country Fieldtype is a combination of the Country Fieldtype and th
 <img src="readme/images/entry_region_in_country.png"
        alt="Region Fieldtype config country manual option" />
 
+<hr>
+
 ## Locale configuration
 
 ### Control Panel
@@ -91,3 +97,103 @@ To configure the locale of the control panel, you need to set the `locale` value
 When using multi-site, rendering one of the Fieldtypes in an Antler `{{ region }}` will display the value in the language specific to the site's locale.
 
 The configuration for these locales can be found in the `config/statamic/sites.php` file.
+
+<hr>
+
+## `countries_and_regions` tag
+Iterate over countries or regions in antlers with the `countries_and_regions` tag.
+
+#### Countries `countries_and_regions:countries`
+The param `default` can be used to set `selected` to true for the country that matches.
+```html
+<ul>
+{{ countries_and_regions:countries default="AU" }}
+    <li>{{ isoCode }} - {{ countryName }}</li>
+{{ /countries_and_regions:countries }}
+</ul>
+```
+
+Example use in a register form:
+```html
+{{ user:register_form }}
+...
+<label for="country">Country:</label>
+<select name="country" id="country">
+    {{ countries_and_regions:countries default="AU" }}
+    <option value="{{ isoCode }}" {{ selected }}>
+        {{ countryName }}
+    </option>
+    {{ /countries_and_regions:countries }}
+</select>
+...
+{{ /user:register_form }}
+```
+
+#### Regions `countries_and_regions:regions`
+The param `country` can be used to filter for a country by code. This can also be multiple: "AU,US".
+The param `default` can be used to set `selected` to true for the region that matches.
+
+```html
+<ul>
+{{ countries_and_regions:regions country="AU" default="AU-NSW" }}
+    <li>{{ isoCode }} - {{ regionName }} - {{ selected }}</li>
+{{ /countries_and_regions:regions }}
+</ul>
+```
+
+Example use in a register form:
+```html
+{{ user:register_form }}
+...
+<label for="region">Region:</label>
+<select name="region" id="region">
+    {{ countries_and_regions:regions country="AU" default="AU-NSW" }}
+    <option value="{{ isoCode }}" {{ selected }}>{{ regionName }}</option>
+    {{ /countries_and_regions:regions }}
+</select>
+...
+{{ /user:register_form }}
+```
+
+If you have a country select above a region select please see the below subheading.
+
+#### Endpoint: `/countries_and_regions/{countryCode}/regions`
+
+If you have a country select above a region select and you want the region options to update when the country is selected. Then see this example:
+
+```html
+<select name="country" id="country" onchange="reloadRegions()">
+    ...options
+</select>
+
+<select name="region" id="region">
+    ...options
+</select>
+
+<script>
+    async function reloadRegions() {
+        const countryCode = document.getElementById("country").value;
+        if (!countryCode) {
+            return;
+        }
+        const response = await fetch(
+            `/countries_and_regions/${countryCode}/regions`,
+            {
+                method: "POST",
+                headers: {
+                    "X-CSRF-Token": "{{ csrf_token }}",
+                },
+            }
+        );
+        const regions = await response.json();
+        const regionElement = document.getElementById("region");
+        regionElement.innerHTML = "";
+        for (let region of regions) {
+            let option = document.createElement("option");
+            option.text = region.label;
+            option.value = region.value;
+            regionElement.add(option);
+        }
+    }
+</script>
+```

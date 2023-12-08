@@ -12,10 +12,15 @@ class ServiceProvider extends AddonServiceProvider
 {
     protected $routes = [
         'actions' => __DIR__ . '/../routes/actions.php',
+        'web' => __DIR__ . '/../routes/web.php',
     ];
 
     protected $scripts = [
         __DIR__ . '/../public/js/addon.js'
+    ];
+
+    protected $tags = [
+        \Kadegray\StatamicCountryAndRegionFieldtypes\Tags\CountriesAndRegions::class,
     ];
 
     public function bootAddon()

@@ -4,6 +4,8 @@ namespace Kadegray\StatamicCountryAndRegionFieldtypes\FieldtypeFilters;
 
 use Statamic\Extend\HasFields;
 use Sokil\IsoCodes\IsoCodesFactory;
+use Statamic\Facades\Site;
+use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
 
 class RegionFieldtypeFilter
 {
@@ -41,13 +43,17 @@ class RegionFieldtypeFilter
             return;
         }
 
-        $isoCodes = new IsoCodesFactory();
-        $regionName = $isoCodes->getSubdivisions()
-            ->getByCode($region)
-            ->getLocalName();
+        $currentLocale = data_get(Site::current(), 'locale');
+
+        $driver = new SymfonyTranslationDriver();
+        $driver->setLocale($currentLocale);
+        $isoCodes = new IsoCodesFactory(null, $driver);
+
+        $regionCode = $isoCodes->getSubdivisions()->getByCode($region);
+        $regionName = $regionCode ? $regionCode->getLocalName() : null;
 
         $field = $this->fieldtype->field()->display();
 
-        return $field . " is $regionName";
+        return $field . " is $region" . ($regionName ? " $regionName" : "");
     }
 }
