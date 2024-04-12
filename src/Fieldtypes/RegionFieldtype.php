@@ -142,7 +142,7 @@ class RegionFieldtype extends Fieldtype
             App::setLocale($scarfLocale);
         }
 
-        $iso31662Regex = '/^[A-Za-z0-9]{2}-[A-Za-z0-9]{2,3}$/';
+        $iso31662Regex = '/^[A-Za-z0-9]{2}-[A-Za-z0-9]{1,3}$/';
         foreach ($regions as &$region) {
 
             $valid = preg_match($iso31662Regex, $region);
