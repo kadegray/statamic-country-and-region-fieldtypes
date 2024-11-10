@@ -109,26 +109,50 @@ class RegionInCountryFieldtype extends Fieldtype
             App::setLocale($scarfLocale);
         }
 
+        $regionIsRequired = $this->config('region_is_required');
+
+        $iso31661Regex = '/^[A-Za-z0-9]{2}$/';
+        $isIso31661Valid = preg_match($iso31661Regex, $value);
+        $isIso31661 = $isIso31661Valid === 1;
+
         $iso31662Regex = '/^[A-Za-z0-9]{2}-[A-Za-z0-9]{1,3}$/';
-        $valid = preg_match($iso31662Regex, $value);
-        if ($valid !== 1) {
-            return $renderInvalidValue ? $value : null;
+        $isIso31662Valid = preg_match($iso31662Regex, $value);
+        $isIso31662 = $isIso31662Valid === 1;
+
+        $regionLocalName = null;
+
+        if (!$regionIsRequired && $isIso31661) {
+            $country = $value;
+        } else {
+
+            if (!$isIso31662) {
+                if ($scarfLocale) {
+                    App::setLocale($originalLocale);
+                }
+                return $renderInvalidValue ? $value : null;
+            }
+
+            $regionLangKey = "kadegray_scarf::regions.{$value}";
+            $regionLocalName = __($regionLangKey);
+            if ($regionLocalName === $regionLangKey) {
+                if ($scarfLocale) {
+                    App::setLocale($originalLocale);
+                }
+                if ($renderInvalidValue) {
+                    return $value;
+                }
+                return null;
+            }
+
+            list($country) = explode('-', $value);
         }
 
-        $regionLangKey = "kadegray_scarf::regions.{$value}";
-        $regionLocalName = __($regionLangKey);
-        if ($regionLocalName === $regionLangKey) {
+        if (!$country) {
             if ($scarfLocale) {
                 App::setLocale($originalLocale);
             }
-            if ($renderInvalidValue) {
-                return $value;
-            }
-            return null;
+            return $renderInvalidValue ? $value : null;
         }
-        $regionName = $regionLocalName;
-
-        list($country) = explode('-', $value);
 
         $countryLangKey = "kadegray_scarf::countries.{$country}";
         $countryLocalName = __($countryLangKey);
@@ -139,15 +163,15 @@ class RegionInCountryFieldtype extends Fieldtype
             if ($renderInvalidValue) {
                 return $value;
             }
-            return $regionName;
+            return $regionLocalName;
         }
 
         if ($scarfLocale) {
             App::setLocale($originalLocale);
         }
 
-        $countryName = $countryLocalName;
-
-        return "$regionName, $countryName";
+        return $isIso31661
+            ? "$countryLocalName"
+            : "$regionLocalName, $countryLocalName";
     }
 }
