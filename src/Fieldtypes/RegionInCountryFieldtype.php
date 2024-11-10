@@ -85,6 +85,13 @@ class RegionInCountryFieldtype extends Fieldtype
                 'default' => false,
                 'width' => 50,
             ],
+            'region_is_required' => [
+                'display' => __('Region is required'),
+                'instructions' => 'When enabled this will ensure that the value can only be a region, meaning that a region has to be selected for the value to be set. When disabled, if only country is selected then the value will be the country code until a region is selected.',
+                'type' => 'toggle',
+                'default' => true,
+                'width' => 50,
+            ],
         ];
     }
 

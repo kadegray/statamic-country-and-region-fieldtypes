@@ -712,7 +712,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       country: null,
-      regions: null
+      region: null
     };
   },
   watch: {
@@ -720,30 +720,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var regions;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!_country) {
-                  _this.update(null);
+                if (_country) {
+                  _context.next = 3;
+                  break;
                 }
 
-                _context.next = 3;
-                return _this.$refs.regions.getRegions(_this.country);
+                _this.update(null);
+
+                return _context.abrupt("return");
 
               case 3:
-                regions = _context.sent;
-
-                // if (regions.length > 0) {
-                _this.update(_country); // }
-
-
-                if (_country !== oldCountry) {
-                  _this.$refs.regions.update(null);
+                // if current value is not a region, set country as value
+                if (!_this.value || _this.value && !_this.value.includes('-')) {
+                  if (!_this.config.region_is_required) {
+                    _this.update(_country);
+                  }
                 }
 
+                _context.next = 6;
+                return _this.$refs.region.getRegions(_this.country);
+
               case 6:
+                if (_country !== oldCountry) {
+                  _this.$refs.region.update(null);
+                }
+
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -751,9 +757,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    regions: function regions(_regions) {
-      if (_regions) {
-        this.update(this.regions);
+    region: function region(_region) {
+      if (_region) {
+        this.update(_region);
+      } else if (!this.config.region_is_required) {
+        var countryCode = this.value.includes('-') ? lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_split__WEBPACK_IMPORTED_MODULE_0___default()(this.value, '-')) : this.value;
+        this.update(countryCode);
+      } else if (this.config.region_is_required) {
+        this.update(null);
       }
     },
     value: function value() {
@@ -771,39 +782,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var regionCode, countryCode, regions;
+        var theValue, countryCode, regions;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                regionCode = _this2.value;
+                theValue = _this2.value;
 
-                if (regionCode) {
-                  _context2.next = 3;
+                if (theValue) {
+                  _context2.next = 4;
                   break;
                 }
 
+                _this2.$refs.region.update(null);
+
                 return _context2.abrupt("return");
 
-              case 3:
-                countryCode = regionCode.includes('-') ? lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_split__WEBPACK_IMPORTED_MODULE_0___default()(regionCode, '-')) : regionCode;
-                _context2.next = 6;
-                return _this2.$refs.country.setSelected(countryCode);
+              case 4:
+                countryCode = theValue.includes('-') ? lodash_first__WEBPACK_IMPORTED_MODULE_1___default()(lodash_split__WEBPACK_IMPORTED_MODULE_0___default()(theValue, '-')) : theValue;
 
-              case 6:
-                _context2.next = 8;
-                return _this2.$refs.regions.getRegions(countryCode);
-
-              case 8:
-                regions = _context2.sent;
-
-                if (regions.length > 0) {
-                  _this2.$refs.regions.update(_this2.value);
-                } else {
-                  _this2.$refs.regions.update(null);
+                if (!(_this2.$refs.country.value !== countryCode)) {
+                  _context2.next = 12;
+                  break;
                 }
 
+                _context2.next = 8;
+                return _this2.$refs.country.update(countryCode);
+
+              case 8:
+                _context2.next = 10;
+                return _this2.$refs.region.getRegions(countryCode);
+
               case 10:
+                regions = _context2.sent;
+
+                _this2.$refs.region.update(regions.length > 0 ? _this2.value : null);
+
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -6286,20 +6301,20 @@ var render = function () {
       }),
       _vm._v(" "),
       _c("region-fieldtype", {
-        ref: "regions",
+        ref: "region",
         staticClass: "mt-1",
         attrs: {
-          handle: "regions",
+          handle: "region",
           placeholder: _vm.config.region_placeholder,
           clearable: _vm.config.clearable,
         },
         on: { loaded: _vm.regionFieldTypeLoaded },
         model: {
-          value: _vm.regions,
+          value: _vm.region,
           callback: function ($$v) {
-            _vm.regions = $$v
+            _vm.region = $$v
           },
-          expression: "regions",
+          expression: "region",
         },
       }),
     ],
