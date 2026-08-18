@@ -41,7 +41,11 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'kadegray_scarf');
 
-        RateLimiter::for('kadegray_scarf.options', function (Request $request) {
+        RateLimiter::for('kadegray_scarf.options.cp', function (Request $request) {
+            return Limit::perMinute(60)->by($request->ip());
+        });
+
+        RateLimiter::for('kadegray_scarf.options.public', function (Request $request) {
             return Limit::perMinute(60)->by($request->ip());
         });
     }

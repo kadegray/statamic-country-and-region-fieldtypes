@@ -69,6 +69,23 @@ class CountriesAndRegionsTest extends TestCase
         $this->assertSame('selected', $regions['US-CA']['selected']);
     }
 
+    public function test_regions_only_processes_the_first_ten_countries()
+    {
+        $countries = implode(',', array_fill(0, 10, 'US')).',BR';
+
+        $regions = collect($this->tag(['country' => $countries])->regions());
+
+        $this->assertTrue($regions->contains(fn ($region) => str_starts_with($region['isoCode'], 'US-')));
+        $this->assertFalse($regions->contains(fn ($region) => str_starts_with($region['isoCode'], 'BR-')));
+    }
+
+    public function test_regions_ignores_malformed_country_segments()
+    {
+        $regions = collect($this->tag(['country' => 'US,not-a-code,123'])->regions())->keyBy('isoCode');
+
+        $this->assertArrayHasKey('US-CA', $regions);
+    }
+
     public function test_it_is_registered_and_renders_through_antlers()
     {
         $result = (string) Antlers::parse(

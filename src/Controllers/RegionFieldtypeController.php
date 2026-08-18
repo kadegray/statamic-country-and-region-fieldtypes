@@ -4,12 +4,14 @@ namespace Kadegray\StatamicCountryAndRegionFieldtypes\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\App;
+use Kadegray\StatamicCountryAndRegionFieldtypes\Traits\ParsesCountryCodes;
 use Sokil\IsoCodes\IsoCodesFactory;
 use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
-use Illuminate\Support\Str;
 
 class RegionFieldtypeController extends BaseController
 {
+    use ParsesCountryCodes;
+
     public function getOptions($countries)
     {
         $locale = App::getLocale();
@@ -17,11 +19,7 @@ class RegionFieldtypeController extends BaseController
         $driver = new SymfonyTranslationDriver();
         $driver->setLocale($locale);
 
-        if (Str::contains($countries, ',')) {
-            $countries = Str::of($countries)->explode(',');
-        } else if (is_string($countries)) {
-            $countries = [$countries];
-        }
+        $countries = $this->parseCountryCodes($countries);
 
         $regions = [];
 

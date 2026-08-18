@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.4 (2026-08-18)
+
+### Fixed
+
+- `RegionFieldtypeController` and the `countries_and_regions:regions` tag split a comma-separated country list with no cap on how many entries it could contain and no format check before doing work. A single request with a very long comma list could force the server to loop once per entry, each iteration re-scanning the subdivision dataset — the `2.0.1` rate limiting only caps requests per minute, not the cost of any one request, so it didn't mitigate this. Added a shared `ParsesCountryCodes` trait (`src/Traits/ParsesCountryCodes.php`) that filters to well-formed ISO 3166-1 alpha-2 codes and caps the list to 10 entries before any lookup happens; both call sites now use it.
+- The public `countries_and_regions/{country}/regions` web route and the CP `countries`/`{country}/regions` action routes shared a single rate-limit bucket keyed only by IP, so heavy front-end traffic could exhaust the budget and 429 CP editors behind the same IP/NAT. Split into two named limiters, `kadegray_scarf.options.cp` and `kadegray_scarf.options.public`, same 60/min-per-IP policy, registered independently.
+
 ## 2.0.3 (2026-08-18)
 
 ### Fixed

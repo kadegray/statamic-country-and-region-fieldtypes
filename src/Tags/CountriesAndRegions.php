@@ -2,6 +2,7 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes\Tags;
 
+use Kadegray\StatamicCountryAndRegionFieldtypes\Traits\ParsesCountryCodes;
 use Sokil\IsoCodes\IsoCodesFactory;
 use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
 use Statamic\Facades\Site;
@@ -9,6 +10,8 @@ use Illuminate\Support\Str;
 
 class CountriesAndRegions extends \Statamic\Tags\Tags
 {
+    use ParsesCountryCodes;
+
     protected static $handle = 'countries_and_regions';
 
     private function getIsoCodes()
@@ -49,8 +52,7 @@ class CountriesAndRegions extends \Statamic\Tags\Tags
     public function regions()
     {
         $default = $this->params->get('default');
-        $countries = $this->params->get('country');
-        $countries = Str::contains($countries, ',') ? Str::of($countries)->explode(',') : [$countries];
+        $countries = $this->parseCountryCodes($this->params->get('country'));
 
         $isoCodes = $this->getIsoCodes();
         $isoCodes = $isoCodes->getSubdivisions();
