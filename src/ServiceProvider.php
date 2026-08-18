@@ -2,6 +2,9 @@
 
 namespace Kadegray\StatamicCountryAndRegionFieldtypes;
 
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Kadegray\StatamicCountryAndRegionFieldtypes\Console\Commands\GenerateLanguageFiles;
 use Statamic\Providers\AddonServiceProvider;
 use Kadegray\StatamicCountryAndRegionFieldtypes\Fieldtypes\CountryFieldtype;
@@ -37,5 +40,9 @@ class ServiceProvider extends AddonServiceProvider
         }
 
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'kadegray_scarf');
+
+        RateLimiter::for('kadegray_scarf.options', function (Request $request) {
+            return Limit::perMinute(60)->by($request->ip());
+        });
     }
 }

@@ -15,5 +15,5 @@ use Kadegray\StatamicCountryAndRegionFieldtypes\Controllers\RegionFieldtypeContr
 |
 */
 
-Route::post('countries', [CountryFieldtypeController::class, 'getOptions']);
-Route::post('{country}/regions', [RegionFieldtypeController::class, 'getOptions']);
+Route::post('countries', [CountryFieldtypeController::class, 'getOptions'])->middleware('throttle:kadegray_scarf.options');
+Route::post('{country}/regions', [RegionFieldtypeController::class, 'getOptions'])->middleware('throttle:kadegray_scarf.options');

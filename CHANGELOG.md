@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.1 (2026-08-18)
+
+### Fixed
+
+- `CountryFieldtypeController`/`RegionFieldtypeController` no longer mutate the process's global locale via `putenv()`/`setlocale()`. Both endpoints are public and unauthenticated, and since PHP-FPM/Octane workers are reused across requests, a single request previously left `LC_ALL`/`LANGUAGE` permanently changed for every unrelated request handled by that worker afterward. Both controllers now resolve locale-aware names through `SymfonyTranslationDriver` instead, matching the pattern already used by the `countries_and_regions` tag and the two fieldtype filters.
+
+### Added
+
+- Rate limiting (60 requests/minute per IP) on the `countries`, `{country}/regions`, and `countries_and_regions/{country}/regions` endpoints, via a new `kadegray_scarf.options` named rate limiter registered in `ServiceProvider`.
+
 ## 2.0.0 (2026-08-17)
 
 ### Changed

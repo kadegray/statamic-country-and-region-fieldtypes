@@ -22,4 +22,13 @@ class CountryFieldtypeControllerTest extends TestCase
         $this->assertTrue(collect($countries)->contains(fn ($country) => $country['value'] === 'US' && $country['label'] === 'United States'));
         $this->assertTrue(collect($countries)->contains(fn ($country) => $country['value'] === 'CA' && $country['label'] === 'Canada'));
     }
+
+    public function test_it_is_rate_limited()
+    {
+        for ($i = 1; $i <= 60; $i++) {
+            $this->post('/!/statamic-country-and-region-fieldtypes/countries')->assertOk();
+        }
+
+        $this->post('/!/statamic-country-and-region-fieldtypes/countries')->assertStatus(429);
+    }
 }
