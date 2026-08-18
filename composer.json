@@ -28,6 +28,7 @@
         }
     },
     "require": {
+        "statamic/cms": "^6.0",
         "sokil/php-isocodes": "^4.1",
         "sokil/php-isocodes-db-i18n": "^4.0"
     },
@@ -37,7 +38,6 @@
         }
     },
     "require-dev": {
-        "statamic/cms": "^6.0",
         "orchestra/testbench": "^9.0 || ^10.0",
         "phpunit/phpunit": "^11.0 || ^12.0"
     }

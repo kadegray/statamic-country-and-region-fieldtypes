@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.3 (2026-08-18)
+
+### Fixed
+
+- `statamic/cms` was only ever declared under `require-dev`, never `require`, going all the way back to when it was constrained to `^3.3` — meaning Composer never actually enforced or advertised which Statamic version this addon supports for anyone installing it into their own site. Moved `"statamic/cms": "^6.0"` into `require`, so Composer now correctly refuses to install this addon into a pre-6 Statamic site instead of allowing a broken install.
+
 ## 2.0.2 (2026-08-18)
 
 ### Added
