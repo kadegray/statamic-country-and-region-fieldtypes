@@ -1,0 +1,40 @@
+# Reference fields for a collection blueprint that the browser suite (tests/browser/)
+# can run against. Drop these into any blueprint on your local test site, alongside
+# whatever other fields it already has.
+#
+# The `region_field`'s `countries_field` value must match the handle you give the
+# country field below (here, `country_field`) or the linking silently won't engage.
+-
+  handle: country_field
+  field:
+    type: country
+    display: 'Country Field'
+-
+  handle: region_in_country_field
+  field:
+    type: region_in_country
+    display: 'Region In Country Field'
+-
+  handle: region_field
+  field:
+    type: region
+    display: 'Region Field'
+    country: countries_field
+    countries_field: country_field
+-
+  handle: region_field_manual
+  field:
+    type: region
+    display: 'Region Field Manual'
+    country: countries_manual
+    countries_manual:
+      - US
+      - CA
+-
+  handle: country_field_limited
+  field:
+    type: country
+    display: 'Country Field Limited'
+    multiple: true
+    max_items: 2
+    placeholder: 'Choose up to two countries'

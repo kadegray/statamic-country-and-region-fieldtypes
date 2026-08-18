@@ -11,6 +11,11 @@
             "Kadegray\\StatamicCountryAndRegionFieldtypes\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Kadegray\\StatamicCountryAndRegionFieldtypes\\Tests\\": "tests"
+        }
+    },
     "extra": {
         "statamic": {
             "name": "Statamic Country And Region Fieldtypes",
@@ -32,6 +37,8 @@
         }
     },
     "require-dev": {
-        "statamic/cms": "^3.3"
+        "statamic/cms": "^6.0",
+        "orchestra/testbench": "^9.0 || ^10.0",
+        "phpunit/phpunit": "^11.0 || ^12.0"
     }
 }

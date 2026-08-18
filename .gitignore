@@ -1,3 +1,9 @@
 node_modules
 vendor
 mix-manifest.json
+.phpunit.cache
+.phpunit.result.cache
+tests/browser/.auth
+test-results
+playwright-report
+blade-compiled
