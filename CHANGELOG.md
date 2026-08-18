@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.2 (2026-08-18)
+
+### Added
+
+- Test coverage for the `countries_and_regions` Antlers tag (`tests/Tags/CountriesAndRegionsTest.php`), covering `countries()`/`regions()` directly plus one `Antlers::parse()` test proving the tag is actually registered and renders correctly through real Antlers parsing — previously untested.
+- Test coverage in `RegionFieldtypeControllerTest` for the public `countries_and_regions/{country}/regions` web route (`routes/web.php`), verifying both its response shape and that the `2.0.1` rate limiting is actually wired up on this route specifically, not just the CP action-route equivalent.
+
 ## 2.0.1 (2026-08-18)
 
 ### Fixed

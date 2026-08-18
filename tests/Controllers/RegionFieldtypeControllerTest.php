@@ -34,4 +34,27 @@ class RegionFieldtypeControllerTest extends TestCase
         $this->assertTrue(collect($regions)->contains(fn ($region) => $region['value'] === 'US-CA' && $region['label'] === 'California'));
         $this->assertTrue(collect($regions)->contains(fn ($region) => $region['value'] === 'CA-ON' && $region['label'] === 'Ontario'));
     }
+
+    public function test_the_public_web_route_returns_regions_for_a_single_country()
+    {
+        $response = $this->post('/countries_and_regions/US/regions');
+
+        $response->assertOk();
+
+        $regions = $response->json();
+
+        $this->assertIsArray($regions);
+        $this->assertNotEmpty($regions);
+        $this->assertTrue(collect($regions)->contains(fn ($region) => $region['value'] === 'US-CA' && $region['label'] === 'California'));
+        $this->assertFalse(collect($regions)->contains(fn ($region) => str_starts_with($region['value'], 'CA-')));
+    }
+
+    public function test_the_public_web_route_is_rate_limited()
+    {
+        for ($i = 1; $i <= 60; $i++) {
+            $this->post('/countries_and_regions/US/regions')->assertOk();
+        }
+
+        $this->post('/countries_and_regions/US/regions')->assertStatus(429);
+    }
 }
